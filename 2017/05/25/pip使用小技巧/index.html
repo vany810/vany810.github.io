@@ -390,11 +390,11 @@
       
         <p><code>pip</code>命令是<strong>Python</strong>语言下安装第三方库的命令，一些基本的使用我这里就不多说了。</p>
 <p>有时候我们可能会遇到这样的情况，我接手了一个现有的项目，因为正常情况我们都是使用<code>virturalenv</code>虚拟环境的，所以我们更换电脑后就需要重新安装项目的依赖库，这时候我们就有这样的快捷方法，在命令行工具中使用：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> pip freeze &gt; ~/Desktop/requirements.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pip freeze &gt; ~/Desktop/requirements.txt</span></span><br></pre></td></tr></table></figure>
 <p>我们就可以在桌面生成一个项目的依赖库目录文件，就像下图这样：</p>
 <p><img src="http://omwcxiv62.bkt.clouddn.com/WX20170525-175736@2x.png" alt="WX20170525-175736@2x"></p>
 <p>将这个文件放入Git仓库并且提交，这样其他协作开发人员只需要使用以下命令就能快速安装所有依赖库：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> pip install -r ~/Desktop/requirements.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pip install -r ~/Desktop/requirements.txt</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -505,7 +505,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -527,7 +527,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

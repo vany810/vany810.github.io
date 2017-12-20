@@ -82,7 +82,7 @@
 <meta name="description" content="我心依旧，奋斗不止">
 <meta property="og:type" content="website">
 <meta property="og:title" content="技术宅之家">
-<meta property="og:url" content="http://swifter.love/page/2/index.html">
+<meta property="og:url" content="http://swifter.love/tags/Mac系统/index.html">
 <meta property="og:site_name" content="技术宅之家">
 <meta property="og:description" content="我心依旧，奋斗不止">
 <meta property="og:locale" content="zh-Hans">
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://swifter.love/page/2/"/>
+  <link rel="canonical" href="http://swifter.love/tags/Mac系统/"/>
 
 
 
 
 
-  <title>技术宅之家</title>
+  <title>标签: Mac系统 | 技术宅之家</title>
   
 
 
@@ -143,8 +143,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -281,307 +280,55 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
-    
+
+  
+  
+  
+  <div class="post-block tag">
+
+    <div id="posts" class="posts-collapse">
+      <div class="collection-title">
+        <h1>Mac系统<small>标签</small>
+        </h1>
+      </div>
+
       
-
-  
-
-  
-  
-  
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://swifter.love/2017/05/16/switch的使用进阶/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陶英军">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="技术宅之家">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/16/switch的使用进阶/" itemprop="url">switch/case的使用进阶</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
+            <a class="post-title-link" href="/2017/12/20/MacOS系统装机环境配置命令大全/" itemprop="url">
               
-                <span class="post-meta-item-text">发表于</span>
+                <span itemprop="name">MacOS系统装机环境配置命令大全</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-16T16:13:00+08:00">
-                2017-05-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h1><p><strong>switch/case</strong>是我们开发中经常用来做条件判断的语法，下面是我们常用的一种形式：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">"swift"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span> name &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="string">"objc"</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Old iOS develop language!"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="string">"swift"</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"New iOS develop language!"</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Unknown language!"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>当然，我们也会遇到相对复杂一些的情况，比如我们条件判断的值有多个，这个时候我们就会用到元组：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> authentication = (name: <span class="string">"twostraws"</span>, password: <span class="string">"fr0st1es"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span> authentication &#123;</span><br><span class="line"><span class="keyword">case</span> (<span class="string">"bilbo"</span>, <span class="string">"bagg1n5"</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Hello, Bilbo Baggins!"</span>)</span><br><span class="line"><span class="keyword">case</span> (<span class="string">"twostraws"</span>, <span class="string">"fr0st1es"</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Hello, Paul Hudson!"</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Who are you?"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/05/16/switch的使用进阶/#more" rel="contents">
-              阅读全文 &raquo;
             </a>
-          </div>
-          <!--/noindex-->
         
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-12-20T16:41:07+08:00"
+              content="2017-12-20" >
+          12-20
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
       
     </div>
-    
-    
-    
 
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
   
   
   
-  </article>
-
-
-    
-      
 
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://swifter.love/2017/05/16/GameplayKit框架中的神器/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陶英军">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="技术宅之家">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/16/GameplayKit框架中的神器/" itemprop="url">GameplayKit框架中的神器</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-16T14:01:00+08:00">
-                2017-05-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>GameplayKit是苹果为开发游戏提供的自带系统框架，可能作为App开发者平时几乎不使用该框架，但是使用过该框架的开发者们都会惊奇地发现里面有许多方便好用的方法：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> GameplayKit</span><br><span class="line"></span><br><span class="line"><span class="comment">//打乱数组顺序</span></span><br><span class="line"><span class="keyword">let</span> countries = <span class="type">GKRandomSource</span>.sharedRandom().arrayByShufflingObjects(<span class="keyword">in</span>: countries) <span class="keyword">as</span>! [<span class="type">String</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">//生成随机数</span></span><br><span class="line"><span class="keyword">let</span> correctAnswer = <span class="type">GKRandomSource</span>.sharedRandom().nextInt(upperBound: <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
-
 
 
           </div>
