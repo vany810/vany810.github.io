@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Swift,语法," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="基本使用switch/case是我们开发中经常用来做条件判断的语法，下面是我们常用的一种形式： 12345678910let name = &quot;swift&quot;switch name &amp;#123;case &quot;objc&quot;:    print(&quot;Old iOS develop language!&quot;)case &quot;swift&quot;:    print(&quot;New iOS develop language!&quot;)defa">
+<meta name="keywords" content="Swift,语法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="switch&#x2F;case的使用进阶">
+<meta property="og:url" content="http://swifter.love/2017/05/16/switch的使用进阶/index.html">
+<meta property="og:site_name" content="技术宅之家">
+<meta property="og:description" content="基本使用switch/case是我们开发中经常用来做条件判断的语法，下面是我们常用的一种形式： 12345678910let name = &quot;swift&quot;switch name &amp;#123;case &quot;objc&quot;:    print(&quot;Old iOS develop language!&quot;)case &quot;swift&quot;:    print(&quot;New iOS develop language!&quot;)defa">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-20T03:43:37.684Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="switch&#x2F;case的使用进阶">
+<meta name="twitter:description" content="基本使用switch/case是我们开发中经常用来做条件判断的语法，下面是我们常用的一种形式： 12345678910let name = &quot;swift&quot;switch name &amp;#123;case &quot;objc&quot;:    print(&quot;Old iOS develop language!&quot;)case &quot;swift&quot;:    print(&quot;New iOS develop language!&quot;)defa">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://swifter.love/2017/05/16/switch的使用进阶/"/>
+
+
+
+
+
+  <title>switch/case的使用进阶 | 技术宅之家</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">技术宅之家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://swifter.love/2017/05/16/switch的使用进阶/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陶英军">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="技术宅之家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">switch/case的使用进阶</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-16T16:13:00+08:00">
+                2017-05-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h1><p><strong>switch/case</strong>是我们开发中经常用来做条件判断的语法，下面是我们常用的一种形式：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">"swift"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span> name &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="string">"objc"</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Old iOS develop language!"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="string">"swift"</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"New iOS develop language!"</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Unknown language!"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当然，我们也会遇到相对复杂一些的情况，比如我们条件判断的值有多个，这个时候我们就会用到元组：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> authentication = (name: <span class="string">"twostraws"</span>, password: <span class="string">"fr0st1es"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span> authentication &#123;</span><br><span class="line"><span class="keyword">case</span> (<span class="string">"bilbo"</span>, <span class="string">"bagg1n5"</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Hello, Bilbo Baggins!"</span>)</span><br><span class="line"><span class="keyword">case</span> (<span class="string">"twostraws"</span>, <span class="string">"fr0st1es"</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Hello, Paul Hudson!"</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Who are you?"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h1 id="部分匹配"><a href="#部分匹配" class="headerlink" title="部分匹配"></a>部分匹配</h1><p>有时候使用元组做条件判断的时候，我们可能并不关注元组中某些值，所以我们会忽略它们，是的，你猜的不错，就是使用下划线<code>_</code>：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> authentication = (name: <span class="string">"twostraws"</span>, password: <span class="string">"fr0st1es"</span>, ipAddress: <span class="string">"127.0.0.1"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span> authentication &#123;</span><br><span class="line"><span class="keyword">case</span> (<span class="string">"bilbo"</span>, <span class="string">"bagg1n5"</span>, <span class="number">_</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Hello, Bilbo Baggins!"</span>)</span><br><span class="line"><span class="keyword">case</span> (<span class="string">"twostraws"</span>, <span class="string">"fr0st1es"</span>, <span class="number">_</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Hello, Paul Hudson!"</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Who are you?"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：Swift的switch匹配是从上到下，也就意味着如果某个值能匹配两种case，它只会成功进入第一种case逻辑 </p>
+</blockquote>
+<p>如果你只想匹配元组中一个值，但是你又想知道其他的值是什么，很简单，你只要使用<code>let</code>关键词定义一个常量来获取，就像下面获取<code>password</code>：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> authentication &#123;</span><br><span class="line"><span class="keyword">case</span> (<span class="string">"bilbo"</span>, <span class="string">"bagg1n5"</span>, <span class="number">_</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Hello, Bilbo Baggins!"</span>)</span><br><span class="line"><span class="keyword">case</span> (<span class="string">"twostraws"</span>, <span class="keyword">let</span> password, <span class="number">_</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Hello, Paul Hudson: your password was <span class="subst">\(password)</span>!"</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Who are you?"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="计算元组匹配"><a href="#计算元组匹配" class="headerlink" title="计算元组匹配"></a>计算元组匹配</h1><p>上面的示例中元组中的值都是固定的，但是元组也可以用动态代码来创建，举个简单的例子：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">fizzbuzz</span><span class="params">(number: Int)</span></span> -&gt; <span class="type">String</span> &#123;</span><br><span class="line">    <span class="keyword">switch</span> (number % <span class="number">3</span> == <span class="number">0</span>, number % <span class="number">5</span> == <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">case</span> (<span class="literal">true</span>, <span class="literal">false</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Fizz"</span></span><br><span class="line">    <span class="keyword">case</span> (<span class="literal">false</span>, <span class="literal">true</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Buzz"</span></span><br><span class="line">    <span class="keyword">case</span> (<span class="literal">true</span>, <span class="literal">true</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"FizzBuzz"</span></span><br><span class="line">    <span class="keyword">case</span> (<span class="literal">false</span>, <span class="literal">false</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="type">String</span>(number)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(fizzbuzz(number: <span class="number">15</span>))</span><br></pre></td></tr></table></figure>
+<p>这个时候，你给任意一个<code>number</code>，都可以进行正确的条件匹配。</p>
+<h1 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h1><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> twostraws = (name: <span class="string">"twostraws"</span>, password: <span class="string">"fr0st1es"</span>)</span><br><span class="line"><span class="keyword">let</span> bilbo = (name: <span class="string">"bilbo"</span>, password: <span class="string">"bagg1n5"</span>)</span><br><span class="line"><span class="keyword">let</span> taylor = (name: <span class="string">"taylor"</span>, password: <span class="string">"fr0st1es"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> users = [twostraws, bilbo, taylor]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> user <span class="keyword">in</span> users &#123;</span><br><span class="line">    <span class="built_in">print</span>(user.name)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可能平时你看到了太多这样的for循环，是的，是个开发都知道，那接下来这种使用方法你可能不熟悉：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="keyword">case</span> (<span class="string">"twostraws"</span>, <span class="string">"fr0st1es"</span>) <span class="keyword">in</span> users &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"User twostraws has the password fr0st1es"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>是不是很神奇，当然，你也可以用<code>let</code>去动态获取一个值，比如我知道<code>password</code>，我想知道对应的<code>name</code>：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="keyword">case</span> <span class="keyword">let</span> (name, <span class="string">"fr0st1es"</span>) <span class="keyword">in</span> users &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"User <span class="subst">\(name)</span> has the password \"fr0st1es\""</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="可选值匹配"><a href="#可选值匹配" class="headerlink" title="可选值匹配"></a>可选值匹配</h1><p>Swift有两种方法来匹配可选值，第一种是使用<code>.some</code>和<code>.none</code>来匹配有一个值和没有值：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name: <span class="type">String</span>? = <span class="string">"twostraws"</span></span><br><span class="line"><span class="keyword">let</span> password: <span class="type">String</span>? = <span class="string">"fr0st1es"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span> (name, password) &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="keyword">let</span> (.some(name), .some(password)):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Hello, <span class="subst">\(name)</span>"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="keyword">let</span> (.some(name), .<span class="keyword">none</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Please enter a password."</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Who are you?"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第二种方法更加简单：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> (name, password) &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="keyword">let</span> (name?, password?):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Hello, <span class="subst">\(name)</span>"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="keyword">let</span> (username?, <span class="literal">nil</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Please enter a password."</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Who are you?"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再用数组举个简单的例子，你应该就可以完全理解了：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> data: [<span class="type">Any</span>?] = [<span class="string">"Bill"</span>, <span class="literal">nil</span>, <span class="number">69</span>, <span class="string">"Ted"</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="keyword">case</span> <span class="keyword">let</span> .some(datum) <span class="keyword">in</span> data &#123;</span><br><span class="line">    <span class="built_in">print</span>(datum)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="keyword">case</span> <span class="keyword">let</span> datum? <span class="keyword">in</span> data &#123;</span><br><span class="line">    <span class="built_in">print</span>(datum)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="范围匹配"><a href="#范围匹配" class="headerlink" title="范围匹配"></a>范围匹配</h1><p>是不是感觉快起飞了，一个<code>switch/case</code>竟然有这么多学问，其实我自己也被吓到了，范围匹配你可能经常使用这样的代码：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> age = <span class="number">36</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span> age &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="number">0</span> ..&lt; <span class="number">18</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"You have the energy and time, but not the money"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="number">18</span> ..&lt; <span class="number">70</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"You have the energy and money, but not the time"</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"You have the time and money, but not the energy"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当然，条件判断也是可以使用的，我这里简单延伸一下，你可能会像这样去写：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">case</span> <span class="number">0</span> ..&lt; <span class="number">18</span> = age &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"You have the energy and time, but not the money"</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> <span class="keyword">case</span> <span class="number">18</span> ..&lt; <span class="number">70</span> = age &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"You have the energy and money, but not the time"</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"You have the time and money, but not the energy"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其实这没什么问题，但是有些人可能会有强迫症，我介绍两种更加直观易读的方式：</p>
+<ul>
+<li>使用<code>~=</code>操作符</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">0</span> ..&lt; <span class="number">18</span> ~= age &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"You have the energy and time, but not the money"</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> <span class="number">18</span> ..&lt; <span class="number">70</span> ~= age &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"You have the energy and money, but not the time"</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"You have the time and money, but not the energy"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用<strong>Range</strong>的<strong>contains()</strong>方法</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="number">0</span> ..&lt; <span class="number">18</span>).<span class="built_in">contains</span>(age) &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"You have the energy and time, but not the money"</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="number">18</span> ..&lt; <span class="number">70</span>).<span class="built_in">contains</span>(age) &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"You have the energy and money, but not the time"</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"You have the time and money, but not the energy"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>怎么样，是不是可读性更强了！ </p>
+<p>你可以将范围匹配和元组匹配合并起来，就像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> user = (name: <span class="string">"twostraws"</span>, password: <span class="string">"fr0st1es"</span>, age: <span class="number">36</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span> user &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="keyword">let</span> (name, <span class="number">_</span>, <span class="number">0</span> ..&lt; <span class="number">18</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"<span class="subst">\(name)</span> has the energy and time, but no money"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="keyword">let</span> (name, <span class="number">_</span>, <span class="number">18</span> ..&lt; <span class="number">70</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"<span class="subst">\(name)</span> has the money and energy, but no time"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="keyword">let</span> (name, <span class="number">_</span>, <span class="number">_</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"<span class="subst">\(name)</span> has the time and money, but no energy"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="枚举和关联值匹配"><a href="#枚举和关联值匹配" class="headerlink" title="枚举和关联值匹配"></a>枚举和关联值匹配</h1><p>可能还有些人不太理解枚举和关联值，枚举在Swift中变得非常强大，后面我会再单独写一个枚举相关的进阶。<br>这里我们先看一个最基本的枚举匹配：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">WeatherType</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> cloudy</span><br><span class="line">    <span class="keyword">case</span> sunny</span><br><span class="line">    <span class="keyword">case</span> windy</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> today = <span class="type">WeatherType</span>.cloudy</span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span> today &#123;</span><br><span class="line"><span class="keyword">case</span> .cloudy:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"It's cloudy"</span>)</span><br><span class="line"><span class="keyword">case</span> .windy:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"It's windy"</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"It's sunny"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>有时候在条件判断你也会用到枚举，就像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> today == .cloudy &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"It's cloudy"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这些都很简单，但是一旦你加入了关联值，就会变得复杂起来，因为你可以使用它们，忽略它们，或者基于它们进行过滤。 </p>
+<p>修改一下前面的代码，加上一个关联值，然后获取对应的值：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">WeatherType</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> cloudy(coverage: <span class="type">Int</span>)</span><br><span class="line">    <span class="keyword">case</span> sunny</span><br><span class="line">    <span class="keyword">case</span> windy</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> today = <span class="type">WeatherType</span>.cloudy(coverage: <span class="number">100</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span> today &#123;</span><br><span class="line"><span class="keyword">case</span> .cloudy(<span class="keyword">let</span> coverage):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"It's cloudy with <span class="subst">\(coverage)</span>% coverage"</span>)</span><br><span class="line"><span class="keyword">case</span> .windy:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"It's windy"</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"It's sunny"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还是挺容易的，那么如何加上过滤条件呢？这时候我们就要使用<strong>where</strong>关键词创建一个你想查询的条件语句：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">WeatherType</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> cloudy(coverage: <span class="type">Int</span>)</span><br><span class="line">    <span class="keyword">case</span> sunny</span><br><span class="line">    <span class="keyword">case</span> windy</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> today = <span class="type">WeatherType</span>.cloudy(coverage: <span class="number">100</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span> today &#123;</span><br><span class="line"><span class="keyword">case</span> .cloudy(<span class="keyword">let</span> coverage) <span class="keyword">where</span> coverage &lt; <span class="number">100</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"It's cloudy with <span class="subst">\(coverage)</span>% coverage"</span>)</span><br><span class="line"><span class="keyword">case</span> .cloudy(<span class="keyword">let</span> coverage) <span class="keyword">where</span> coverage == <span class="number">100</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"You must live in the UK"</span>)</span><br><span class="line"><span class="keyword">case</span> .windy:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"It's windy"</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"It's sunny"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再放一个大招，将范围匹配和可选值匹配组合起来，你能猜到是什么样的吗？好吧，不管你会不会，我都要举个例子：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">WeatherType</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> cloudy(coverage: <span class="type">Int</span>)</span><br><span class="line">    <span class="keyword">case</span> sunny</span><br><span class="line">    <span class="keyword">case</span> windy</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> today = <span class="type">WeatherType</span>.cloudy(coverage: <span class="number">100</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span> today &#123;</span><br><span class="line"><span class="keyword">case</span> .cloudy(<span class="keyword">let</span> coverage) <span class="keyword">where</span> coverage == <span class="number">0</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"You must live in Death Valley"</span>)</span><br><span class="line"><span class="keyword">case</span> .cloudy(<span class="keyword">let</span> coverage) <span class="keyword">where</span> (<span class="number">1</span>...<span class="number">50</span>).<span class="built_in">contains</span>(coverage):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"It's a bit cloudy, with <span class="subst">\(coverage)</span>% coverage"</span>)</span><br><span class="line"><span class="keyword">case</span> .cloudy(<span class="keyword">let</span> coverage) <span class="keyword">where</span> (<span class="number">51</span>...<span class="number">99</span>).<span class="built_in">contains</span>(coverage):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"It's very cloudy, with <span class="subst">\(coverage)</span>% coverage"</span>)</span><br><span class="line"><span class="keyword">case</span> .cloudy(<span class="keyword">let</span> coverage) <span class="keyword">where</span> coverage == <span class="number">100</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"You must live in the UK"</span>)</span><br><span class="line"><span class="keyword">case</span> .windy:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"It's windy"</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"It's sunny"</span>)</span><br><span class="line">&#125;</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">&gt; 注意：像下面这样使用**<span class="keyword">where</span>**在循环中匹配关联值是不行的，如果没有关联值可以使用**<span class="keyword">where</span>**</span><br><span class="line"></span><br><span class="line">```swift</span><br><span class="line"><span class="keyword">let</span> forecast: [<span class="type">WeatherType</span>] = [.cloudy(coverage: <span class="number">40</span>), .sunny, .windy, .cloudy(coverage: <span class="number">100</span>), .sunny]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> day <span class="keyword">in</span> forecast <span class="keyword">where</span> day == .cloudy &#123;</span><br><span class="line">    <span class="built_in">print</span>(day)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>正确的方式应该是这样的：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> forecast: [<span class="type">WeatherType</span>] = [.cloudy(coverage: <span class="number">40</span>), .sunny, .windy, .cloudy(coverage: <span class="number">100</span>), .sunny]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="keyword">case</span> <span class="keyword">let</span> .cloudy(coverage) <span class="keyword">in</span> forecast &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"It's cloudy with <span class="subst">\(coverage)</span>% coverage"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="类型匹配"><a href="#类型匹配" class="headerlink" title="类型匹配"></a>类型匹配</h1><p>说到类型匹配，就应该想到<code>is</code>关键词：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> view: <span class="type">AnyObject</span> = <span class="type">UIButton</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span> view &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="keyword">is</span> <span class="type">UIButton</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Found a button"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="keyword">is</span> <span class="type">UILabel</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Found a label"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="keyword">is</span> <span class="type">UISwitch</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Found a switch"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="keyword">is</span> <span class="type">UIView</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Found a view"</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Found something else"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的代码你会发现一个问题，<code>UIButton</code>是继承<code>UIView</code>的，上面的结果会进入第一个case语句，那么我们调换一下顺序：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> view: <span class="type">AnyObject</span> = <span class="type">UIButton</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span> view &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="keyword">is</span> <span class="type">UIView</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Found a view"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="keyword">is</span> <span class="type">UIButton</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Found a button"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="keyword">is</span> <span class="type">UILabel</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Found a label"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="keyword">is</span> <span class="type">UISwitch</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Found a switch"</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Found something else"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样代码会进入第一个case语句，我想你已经知道我为什么要说明这个了，没错，前面我已经讲过了匹配顺序的问题。 </p>
+<p>最后我再举一个实用的例子：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> label <span class="keyword">in</span> view.subviews <span class="keyword">where</span> label <span class="keyword">is</span> <span class="type">UILabel</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Found a label with frame <span class="subst">\(label.frame)</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里<code>frame</code>属性其实是<code>UIView</code>的，如果我们要使用<code>UILabel</code>的<code>text</code>属性，我们要这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="keyword">case</span> <span class="keyword">let</span> label <span class="keyword">as</span> <span class="type">UILabel</span> <span class="keyword">in</span> view.subviews &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Found a label with text <span class="subst">\(label.text)</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>怎么样，是不是感觉已经超神了？？？</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+            <a href="/tags/语法/" rel="tag"># 语法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/16/GameplayKit框架中的神器/" rel="next" title="GameplayKit框架中的神器">
+                <i class="fa fa-chevron-left"></i> GameplayKit框架中的神器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/24/Django框架ImageField的使用/" rel="prev" title="Django框架ImageField的使用">
+                Django框架ImageField的使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">陶英军</p>
+              <p class="site-description motion-element" itemprop="description">我心依旧，奋斗不止</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/vany810" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:478539580@qq.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.djangoproject.com/" title="Django" target="_blank">Django</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://flask.pocoo.org/" title="Flask" target="_blank">Flask</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本使用"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x57FA;&#x672C;&#x4F7F;&#x7528;" class="headerlink" title="&#x57FA;&#x672C;&#x4F7F;&#x7528;"></a>&#x57FA;&#x672C;&#x4F7F;&#x7528;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#部分匹配"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x90E8;&#x5206;&#x5339;&#x914D;" class="headerlink" title="&#x90E8;&#x5206;&#x5339;&#x914D;"></a>&#x90E8;&#x5206;&#x5339;&#x914D;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算元组匹配"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x8BA1;&#x7B97;&#x5143;&#x7EC4;&#x5339;&#x914D;" class="headerlink" title="&#x8BA1;&#x7B97;&#x5143;&#x7EC4;&#x5339;&#x914D;"></a>&#x8BA1;&#x7B97;&#x5143;&#x7EC4;&#x5339;&#x914D;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#循环"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x5FAA;&#x73AF;" class="headerlink" title="&#x5FAA;&#x73AF;"></a>&#x5FAA;&#x73AF;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#可选值匹配"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x53EF;&#x9009;&#x503C;&#x5339;&#x914D;" class="headerlink" title="&#x53EF;&#x9009;&#x503C;&#x5339;&#x914D;"></a>&#x53EF;&#x9009;&#x503C;&#x5339;&#x914D;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#范围匹配"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x8303;&#x56F4;&#x5339;&#x914D;" class="headerlink" title="&#x8303;&#x56F4;&#x5339;&#x914D;"></a>&#x8303;&#x56F4;&#x5339;&#x914D;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#枚举和关联值匹配"><span class="nav-number">7.</span> <span class="nav-text"><a href="#&#x679A;&#x4E3E;&#x548C;&#x5173;&#x8054;&#x503C;&#x5339;&#x914D;" class="headerlink" title="&#x679A;&#x4E3E;&#x548C;&#x5173;&#x8054;&#x503C;&#x5339;&#x914D;"></a>&#x679A;&#x4E3E;&#x548C;&#x5173;&#x8054;&#x503C;&#x5339;&#x914D;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类型匹配"><span class="nav-number">8.</span> <span class="nav-text"><a href="#&#x7C7B;&#x578B;&#x5339;&#x914D;" class="headerlink" title="&#x7C7B;&#x578B;&#x5339;&#x914D;"></a>&#x7C7B;&#x578B;&#x5339;&#x914D;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陶英军</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
