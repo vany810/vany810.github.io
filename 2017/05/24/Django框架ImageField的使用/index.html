@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="技术宅之家">
 <meta property="og:description" content="我们在日常生活中的网站上可以看到各种各样的图片，那么如果使用Django框架搭建后台服务，如何去实现图片的上传，加载呢？ 首先写一个简单的Model类： 123456class CourseOrg(models.Model):    name = models.CharField(max_length=50, verbose_name=u&apos;机构名称&apos;)    image = models.Imag">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-20T03:43:35.195Z">
+<meta property="og:updated_time" content="2017-12-20T08:48:57.867Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django框架ImageField的使用">
 <meta name="twitter:description" content="我们在日常生活中的网站上可以看到各种各样的图片，那么如果使用Django框架搭建后台服务，如何去实现图片的上传，加载呢？ 首先写一个简单的Model类： 123456class CourseOrg(models.Model):    name = models.CharField(max_length=50, verbose_name=u&apos;机构名称&apos;)    image = models.Imag">
@@ -389,10 +389,11 @@
         <p>我们在日常生活中的网站上可以看到各种各样的图片，那么如果使用Django框架搭建后台服务，如何去实现图片的上传，加载呢？</p>
 <p>首先写一个简单的Model类：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CourseOrg</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    name = models.CharField(max_length=<span class="number">50</span>, verbose_name=<span class="string">u'机构名称'</span>)</span><br><span class="line">    image = models.ImageField(upload_to=<span class="string">'org/%Y/%m'</span>, verbose_name=<span class="string">u'机构logo'</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        verbose_name = <span class="string">u'课程机构'</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>这里<code>upload_to</code>参数指定了一个相对路径，那么Django如何知道图片存放的根目录呢？</p>
 <p>没错，我们需要在<code>settings.py</code>文件中添加以下设置：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MEDIA_URL = <span class="string">'/media/'</span></span><br><span class="line">MEDIA_ROOT = os.path.join(BASE_URL, <span class="string">'media'</span>)</span><br></pre></td></tr></table></figure>
-<p>然后我们在工程创建名称为<strong>media</strong>的文件夹，完成以上步骤后就可以通过Django admin后台进行上传图片了。<br><a id="more"></a></p>
+<p>然后我们在工程创建名称为<strong>media</strong>的文件夹，完成以上步骤后就可以通过Django admin后台进行上传图片了。</p>
 <p>那么我们在html文件中怎么将一个ImageField转换成url地址呢？我们看接下来html中的代码：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">width</span>=<span class="string">"200"</span> <span class="attr">height</span>=<span class="string">"120"</span> <span class="attr">class</span>=<span class="string">"scrollLoading"</span> <span class="attr">data-url</span>=<span class="string">"&#123;&#123; MEDIA_URL &#125;&#125;&#123;&#123; course_org.image &#125;&#125;"</span> <span class="attr">src</span>=<span class="string">"&#123;% static "</span><span class="attr">images</span>/<span class="attr">pixel.gif</span>" %&#125;"/&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这里我们需要注意的是，默认情况是无法取到<code>MEDIA_URL</code>变量的，我们需要在<code>settings.py</code>文件中找到<code>TEMPLATES</code>设置，并在<code>OPTIONS</code>配置的<code>context_processors</code>中增加元素：<br><code>django.core.context_processors.media</code></p>

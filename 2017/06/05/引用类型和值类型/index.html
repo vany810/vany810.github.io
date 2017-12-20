@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="引用类型和值类型的区别对任何一个严谨的Swift开发者来说，了解并利用引用类型和值类型的区别都是必须要掌握的技能，是的，是必须！！！（重要的事情三个感叹号，没毛病…） 其实，很多初学者并不是太清楚它们的区别，在选择或者使用的时候，往往做出错误的决定。我写一个简单示例： 1234567891011// 创建一个旅游目的地var target = Target()// 设置位置为海南三亚target.">
+<meta name="description" content="引用类型和值类型的区别对任何一个严谨的Swift开发者来说，了解并利用引用类型和值类型的区别都是必须要掌握的技能，是的，是必须！！！（重要的事情三个感叹号，没毛病…）">
 <meta name="keywords" content="Swift">
 <meta property="og:type" content="article">
 <meta property="og:title" content="引用类型和值类型">
 <meta property="og:url" content="http://swifter.love/2017/06/05/引用类型和值类型/index.html">
 <meta property="og:site_name" content="技术宅之家">
-<meta property="og:description" content="引用类型和值类型的区别对任何一个严谨的Swift开发者来说，了解并利用引用类型和值类型的区别都是必须要掌握的技能，是的，是必须！！！（重要的事情三个感叹号，没毛病…） 其实，很多初学者并不是太清楚它们的区别，在选择或者使用的时候，往往做出错误的决定。我写一个简单示例： 1234567891011// 创建一个旅游目的地var target = Target()// 设置位置为海南三亚target.">
+<meta property="og:description" content="引用类型和值类型的区别对任何一个严谨的Swift开发者来说，了解并利用引用类型和值类型的区别都是必须要掌握的技能，是的，是必须！！！（重要的事情三个感叹号，没毛病…）">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-20T03:58:43.596Z">
+<meta property="og:updated_time" content="2017-12-20T08:48:10.520Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="引用类型和值类型">
-<meta name="twitter:description" content="引用类型和值类型的区别对任何一个严谨的Swift开发者来说，了解并利用引用类型和值类型的区别都是必须要掌握的技能，是的，是必须！！！（重要的事情三个感叹号，没毛病…） 其实，很多初学者并不是太清楚它们的区别，在选择或者使用的时候，往往做出错误的决定。我写一个简单示例： 1234567891011// 创建一个旅游目的地var target = Target()// 设置位置为海南三亚target.">
+<meta name="twitter:description" content="引用类型和值类型的区别对任何一个严谨的Swift开发者来说，了解并利用引用类型和值类型的区别都是必须要掌握的技能，是的，是必须！！！（重要的事情三个感叹号，没毛病…）">
 
 
 
@@ -365,6 +365,7 @@
 
       
         <h1 id="引用类型和值类型的区别"><a href="#引用类型和值类型的区别" class="headerlink" title="引用类型和值类型的区别"></a>引用类型和值类型的区别</h1><p>对任何一个严谨的Swift开发者来说，了解并利用引用类型和值类型的区别都是必须要掌握的技能，是的，是必须！！！（重要的事情三个感叹号，没毛病…）</p>
+<a id="more"></a>
 <p>其实，很多初学者并不是太清楚它们的区别，在选择或者使用的时候，往往做出错误的决定。我写一个简单示例：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个旅游目的地</span></span><br><span class="line"><span class="keyword">var</span> target = <span class="type">Target</span>()</span><br><span class="line"><span class="comment">// 设置位置为海南三亚</span></span><br><span class="line">target.location = <span class="string">"海南三亚"</span></span><br><span class="line"><span class="comment">// 小明要去三亚旅游</span></span><br><span class="line">xiaoMing.target = target</span><br><span class="line"><span class="comment">// 小明的朋友小王看完天气预报，决定去杭州游玩</span></span><br><span class="line">target.location = <span class="string">"杭州"</span></span><br><span class="line">xiaoWang.target = target</span><br><span class="line"><span class="built_in">print</span>(xiaoMing.target.location)</span><br><span class="line"><span class="built_in">print</span>(xiaoWang.target.location)</span><br></pre></td></tr></table></figure>
 <p>如果Target是一个类，那么这在Swift中是引用类型，如果是一个结构体，那就是值类型，这我想大家都是知道的。</p>
@@ -380,7 +381,6 @@
 <p>调用两次，输出结果是1和2，和我们预期的是一致的。因为闭包是引用类型，如果我们创建另一个引用incrementer，它们将共享相同的闭包，因此也将共享相同的counter变量。例如：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> incrementer = createIncrementer()</span><br><span class="line">incrementer()</span><br><span class="line">incrementer()</span><br><span class="line"><span class="keyword">let</span> incrementerCopy = incrementer</span><br><span class="line">incrementerCopy()</span><br><span class="line">incrementer()</span><br></pre></td></tr></table></figure>
 <p>这时候你会看到输出是1，2，3，4，到这里你应该明白了，闭包确实是引用类型。</p>
-<a id="more"></a>
 <h1 id="为什么要使用结构体？"><a href="#为什么要使用结构体？" class="headerlink" title="为什么要使用结构体？"></a>为什么要使用结构体？</h1><p>我们最常面临的是类或者结构体之间的选择，往往多数情况下，我们要优先考虑使用结构体。</p>
 <p>你已经知道，值类型是进行复制而不是共享，这意味着如果你的代码有三个不同的东西指向同一个结构体，那么它们每个都有自己的副本，不会互相干扰。</p>
 <p>如果你开发的应用是比较复杂的，值类型最大的好处是它们本质上是线程安全的。也就是说，你在一个或者多个后台线程上进行工作，用值类型不可能引发竞态条件(race conditions)。</p>

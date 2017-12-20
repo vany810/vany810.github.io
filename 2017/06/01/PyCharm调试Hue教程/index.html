@@ -79,13 +79,13 @@
 
 
 
-<meta name="description" content="首先先吐槽一下，Hue这玩意如果你没做好心理准备，还是先不要入坑，本人是没有办法，公司要基于Hue进行二次开发，所以刚入手的时候每天各种填坑… 言归正传，Hue主要是基于Django框架写的，然而用到的Django版本老的让人觉得匪夷所思，这边我用到的是Hue3.11版本，最新的是3.12版本。 那么本地搭建好Hue项目后要进行Debug，需要进行以下步骤： 1.配置PyCharm虚拟环境目录进入">
+<meta name="description" content="首先先吐槽一下，Hue这玩意如果你没做好心理准备，还是先不要入坑，本人是没有办法，公司要基于Hue进行二次开发，所以刚入手的时候每天各种填坑… 言归正传，Hue主要是基于Django框架写的，然而用到的Django版本老的让人觉得匪夷所思，这边我用到的是Hue3.11版本，最新的是3.12版本。">
 <meta name="keywords" content="Hue,PyCharm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PyCharm调试Hue教程">
 <meta property="og:url" content="http://swifter.love/2017/06/01/PyCharm调试Hue教程/index.html">
 <meta property="og:site_name" content="技术宅之家">
-<meta property="og:description" content="首先先吐槽一下，Hue这玩意如果你没做好心理准备，还是先不要入坑，本人是没有办法，公司要基于Hue进行二次开发，所以刚入手的时候每天各种填坑… 言归正传，Hue主要是基于Django框架写的，然而用到的Django版本老的让人觉得匪夷所思，这边我用到的是Hue3.11版本，最新的是3.12版本。 那么本地搭建好Hue项目后要进行Debug，需要进行以下步骤： 1.配置PyCharm虚拟环境目录进入">
+<meta property="og:description" content="首先先吐槽一下，Hue这玩意如果你没做好心理准备，还是先不要入坑，本人是没有办法，公司要基于Hue进行二次开发，所以刚入手的时候每天各种填坑… 言归正传，Hue主要是基于Django框架写的，然而用到的Django版本老的让人觉得匪夷所思，这边我用到的是Hue3.11版本，最新的是3.12版本。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://omwcxiv62.bkt.clouddn.com/WX20170601-134402@2x.png">
 <meta property="og:image" content="http://omwcxiv62.bkt.clouddn.com/WX20170601-134457@2x.png">
@@ -93,10 +93,10 @@
 <meta property="og:image" content="http://omwcxiv62.bkt.clouddn.com/WX20170601-134631@2x.png">
 <meta property="og:image" content="http://omwcxiv62.bkt.clouddn.com/WX20170601-134720@2x.png">
 <meta property="og:image" content="http://omwcxiv62.bkt.clouddn.com/WX20170601-134818@2x.png">
-<meta property="og:updated_time" content="2017-12-20T03:43:36.732Z">
+<meta property="og:updated_time" content="2017-12-20T08:51:04.921Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PyCharm调试Hue教程">
-<meta name="twitter:description" content="首先先吐槽一下，Hue这玩意如果你没做好心理准备，还是先不要入坑，本人是没有办法，公司要基于Hue进行二次开发，所以刚入手的时候每天各种填坑… 言归正传，Hue主要是基于Django框架写的，然而用到的Django版本老的让人觉得匪夷所思，这边我用到的是Hue3.11版本，最新的是3.12版本。 那么本地搭建好Hue项目后要进行Debug，需要进行以下步骤： 1.配置PyCharm虚拟环境目录进入">
+<meta name="twitter:description" content="首先先吐槽一下，Hue这玩意如果你没做好心理准备，还是先不要入坑，本人是没有办法，公司要基于Hue进行二次开发，所以刚入手的时候每天各种填坑… 言归正传，Hue主要是基于Django框架写的，然而用到的Django版本老的让人觉得匪夷所思，这边我用到的是Hue3.11版本，最新的是3.12版本。">
 <meta name="twitter:image" content="http://omwcxiv62.bkt.clouddn.com/WX20170601-134402@2x.png">
 
 
@@ -395,12 +395,12 @@
       
         <p>首先先吐槽一下，Hue这玩意如果你没做好心理准备，还是先不要入坑，本人是没有办法，公司要基于Hue进行二次开发，所以刚入手的时候每天各种填坑…</p>
 <p>言归正传，Hue主要是基于Django框架写的，然而用到的Django版本老的让人觉得匪夷所思，这边我用到的是Hue3.11版本，最新的是3.12版本。</p>
+<a id="more"></a>
 <p>那么本地搭建好Hue项目后要进行Debug，需要进行以下步骤：</p>
 <h5 id="1-配置PyCharm虚拟环境目录"><a href="#1-配置PyCharm虚拟环境目录" class="headerlink" title="1.配置PyCharm虚拟环境目录"></a>1.配置PyCharm虚拟环境目录</h5><p>进入PyCharm设置界面，进入如下图所示配置界面添加本地虚拟环境目录，加载出该环境依赖库则表示操作成功。</p>
 <p><img src="http://omwcxiv62.bkt.clouddn.com/WX20170601-134402@2x.png" alt="WX20170601-134402@2x"></p>
 <h5 id="2-添加Django支持"><a href="#2-添加Django支持" class="headerlink" title="2.添加Django支持"></a>2.添加Django支持</h5><p>根据下图进入Django配置界面，然后配置右侧信息，对应自己项目目录下的文件目录。</p>
 <p><img src="http://omwcxiv62.bkt.clouddn.com/WX20170601-134457@2x.png" alt="WX20170601-134457@2x"></p>
-<a id="more"></a>
 <h5 id="3-添加Debug配置"><a href="#3-添加Debug配置" class="headerlink" title="3.添加Debug配置"></a>3.添加Debug配置</h5><p>首先，打开Debug配置界面。</p>
 <p><img src="http://omwcxiv62.bkt.clouddn.com/WX20170601-134540@2x.png" alt="WX20170601-134540@2x"></p>
 <p>点击左上角+号添加Django server的配置，添加一个自定义设置名称，完成后点OK按钮。</p>

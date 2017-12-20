@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Python环境：3.6.xLinux系统：CentOS 7 安装nginx和需要的包12sudo yum install epel-releasesudo yum install python-devel nginx 安装uwsgi在项目虚拟环境或者全局使用pip安装： 12# 安装正式环境部署工具pip install uwsgi 配置文件在项目根目录创建conf文件夹，分别创建uc_ngin">
+<meta name="description" content="Python环境：3.6.xLinux系统：CentOS 7 安装nginx和需要的包12sudo yum install epel-releasesudo yum install python-devel nginx">
 <meta name="keywords" content="Django">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Nginx+uwsgi进行Django部署">
 <meta property="og:url" content="http://swifter.love/2017/12/20/使用Nginx-uwsgi进行Django部署/index.html">
 <meta property="og:site_name" content="技术宅之家">
-<meta property="og:description" content="Python环境：3.6.xLinux系统：CentOS 7 安装nginx和需要的包12sudo yum install epel-releasesudo yum install python-devel nginx 安装uwsgi在项目虚拟环境或者全局使用pip安装： 12# 安装正式环境部署工具pip install uwsgi 配置文件在项目根目录创建conf文件夹，分别创建uc_ngin">
+<meta property="og:description" content="Python环境：3.6.xLinux系统：CentOS 7 安装nginx和需要的包12sudo yum install epel-releasesudo yum install python-devel nginx">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-20T05:41:29.093Z">
+<meta property="og:updated_time" content="2017-12-20T08:47:42.576Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Nginx+uwsgi进行Django部署">
-<meta name="twitter:description" content="Python环境：3.6.xLinux系统：CentOS 7 安装nginx和需要的包12sudo yum install epel-releasesudo yum install python-devel nginx 安装uwsgi在项目虚拟环境或者全局使用pip安装： 12# 安装正式环境部署工具pip install uwsgi 配置文件在项目根目录创建conf文件夹，分别创建uc_ngin">
+<meta name="twitter:description" content="Python环境：3.6.xLinux系统：CentOS 7 安装nginx和需要的包12sudo yum install epel-releasesudo yum install python-devel nginx">
 
 
 
@@ -388,6 +388,7 @@
       
         <div class="note info"><p>Python环境：3.6.x<br>Linux系统：CentOS 7</p></div>
 <h1 id="安装nginx和需要的包"><a href="#安装nginx和需要的包" class="headerlink" title="安装nginx和需要的包"></a>安装nginx和需要的包</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install epel-release</span><br><span class="line">sudo yum install python-devel nginx</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h1 id="安装uwsgi"><a href="#安装uwsgi" class="headerlink" title="安装uwsgi"></a>安装uwsgi</h1><p>在项目虚拟环境或者全局使用pip安装：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装正式环境部署工具</span></span><br><span class="line">pip install uwsgi</span><br></pre></td></tr></table></figure>
 <h1 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h1><p>在项目根目录创建<code>conf</code>文件夹，分别创建<code>uc_nginx.conf</code>和<code>uwsgi.ini</code>文件：</p>
