@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="技术宅之家">
 <meta property="og:description" content="最近三个月用Django做了一个算是比较复杂的电商项目，我一个人负责了所有接口的编写，包括APP端，WEB端，APP管理端，感觉写完这个项目以后再也不想遇到电商项目了 - -！ 不多说废话了，最近发现Django官方2.0竟然开始搞中文文档了，这算是开始重视国内市场了吗… 简单来说，我们根据文档刚开始上手Django开发的时候，肯定会照着文档写几乎所有这样的查询： 123456queryset =">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-11T09:14:07.725Z">
+<meta property="og:updated_time" content="2018-07-11T09:16:13.899Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于Django查询优化">
 <meta name="twitter:description" content="最近三个月用Django做了一个算是比较复杂的电商项目，我一个人负责了所有接口的编写，包括APP端，WEB端，APP管理端，感觉写完这个项目以后再也不想遇到电商项目了 - -！ 不多说废话了，最近发现Django官方2.0竟然开始搞中文文档了，这算是开始重视国内市场了吗… 简单来说，我们根据文档刚开始上手Django开发的时候，肯定会照着文档写几乎所有这样的查询： 123456queryset =">
@@ -390,6 +390,7 @@
 <p>不多说废话了，最近发现Django官方2.0竟然开始搞中文文档了，这算是开始重视国内市场了吗…</p>
 <p>简单来说，我们根据文档刚开始上手Django开发的时候，肯定会照着文档写几乎所有这样的查询：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">queryset = Model.objects.all()</span><br><span class="line"></span><br><span class="line">queryset = Model.objects.filter(</span><br><span class="line">    param1=a,</span><br><span class="line">    param2=b</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>我们肯定会这样写的，我开始也是这样子，这里我说一下子，我最开始不是做后台开发的，所以我对SQL语句和数据库方面可能不是很懂。</p>
 <p>那么问题来了，如果最后测试接口的时候，你会发现当你写一个list的GET接口，如果你还需要去查询对象关联表的数据同时进行返回，当你查询几十条返回你就会发现你的返回响应时间就得一两秒了。</p>
 <p>正常情况下，我们都会尽量可能保证接口响应速度为毫秒级，而且尽量1s内会有返回，这样才能保证前端用户的体验。</p>

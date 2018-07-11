@@ -388,33 +388,17 @@
 
       
         
-          
-            <p>最近三个月用Django做了一个算是比较复杂的电商项目，我一个人负责了所有接口的编写，包括APP端，WEB端，APP管理端，感觉写完这个项目以后再也不想遇到电商项目了 - -！</p>
+          <p>最近三个月用Django做了一个算是比较复杂的电商项目，我一个人负责了所有接口的编写，包括APP端，WEB端，APP管理端，感觉写完这个项目以后再也不想遇到电商项目了 - -！</p>
 <p>不多说废话了，最近发现Django官方2.0竟然开始搞中文文档了，这算是开始重视国内市场了吗…</p>
 <p>简单来说，我们根据文档刚开始上手Django开发的时候，肯定会照着文档写几乎所有这样的查询：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">queryset = Model.objects.all()</span><br><span class="line"></span><br><span class="line">queryset = Model.objects.filter(</span><br><span class="line">    param1=a,</span><br><span class="line">    param2=b</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p>我们肯定会这样写的，我开始也是这样子，这里我说一下子，我最开始不是做后台开发的，所以我对SQL语句和数据库方面可能不是很懂。</p>
-<p>那么问题来了，如果最后测试接口的时候，你会发现当你写一个list的GET接口，如果你还需要去查询对象关联表的数据同时进行返回，当你查询几十条返回你就会发现你的返回响应时间就得一两秒了。</p>
-<p>正常情况下，我们都会尽量可能保证接口响应速度为毫秒级，而且尽量1s内会有返回，这样才能保证前端用户的体验。</p>
-<p>那么问题究竟出在哪里？有经验的朋友肯定会想到了，这种list查询解析成json返回，不可避免就会遍历你查询的对象，比如你查询20个user对象queryset，然后还要返回user关联的address对象，那么你每次<code>user.address</code>首次调用的时候其实都会做一次查询，这样20个user就会产生20次查询，当然实际情况你可能查的关联对象远不止一个address，所以你一个list接口有可能会产生几百次查询，就为了获取你这些关联数据。</p>
-<p>出现问题了，当然要找解决方法啦。我们详细看官方文档Model篇里面的queryset内容，可以找到有两个方法：<code>select_related()</code>和<code>prefetch_related()</code>两个方法。</p>
-<p>有些朋友可能刚开始不是太能理解两者的区别，我这里简单说明一下：</p>
-<ul>
-<li><p><code>select_related()</code>只能用于OneToOne和ForeignKey的情况，不能用于多对多和关联关系的字段</p>
-</li>
-<li><p><code>prefetch_related()</code>用于多对多或者关联关系</p>
-</li>
-</ul>
-<p>我举个简单的例子：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 作者</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Author</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    name = models.CharField(...)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 书籍</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    author = models.ForeignKey(Author, ...)</span><br><span class="line">    name = models.CharField(...)</span><br></pre></td></tr></table></figure>
-<p>很简单的两个类，假如我查询的是Book，那么我们应该这么写：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">queryset = Book.object.all().select_related(<span class="string">'author'</span>)</span><br></pre></td></tr></table></figure>
-<p>因为<code>author</code>是Book类里面ForeignKey，如果我们要查询Author：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">queryset = Author.objects.all().prefetch_related(<span class="string">'books'</span>)</span><br></pre></td></tr></table></figure>
-<p>这里因为<code>books</code>是Author这个对象的一个关联关系，我们用<code>author.books</code>是获取不到数据的，它还只是一个manager，我们必须<code>author.books.all()</code>继续查询才能获取到数据。</p>
-<p>如果有遇到更加复杂查询的朋友，可以继续深入了解Prefetch和SubQuery，可以帮你们通过更为复杂的条件获取到你想要的数据，我这里就暂时不举例说明了。</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/07/11/关于Django查询优化/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
