@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="技术宅之家">
 <meta property="og:description" content="Python环境：3.6.xLinux系统：CentOS 7 安装nginx和需要的包12sudo yum install epel-releasesudo yum install python-devel nginx">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-20T08:47:42.576Z">
+<meta property="og:updated_time" content="2018-07-11T08:13:21.906Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Nginx+uwsgi进行Django部署">
 <meta name="twitter:description" content="Python环境：3.6.xLinux系统：CentOS 7 安装nginx和需要的包12sudo yum install epel-releasesudo yum install python-devel nginx">
@@ -399,7 +399,7 @@
 <h1 id="加载自定义nginx配置文件"><a href="#加载自定义nginx配置文件" class="headerlink" title="加载自定义nginx配置文件"></a>加载自定义nginx配置文件</h1><p>复制自定义的nginx配置文件到该目录：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp project_dir/conf/uc_nginx.conf /etc/nginx/conf.d/</span><br></pre></td></tr></table></figure>
 <p>然后重启nginx服务</p>
-<h1 id="uwsgi运行项目"><a href="#uwsgi运行项目" class="headerlink" title="uwsgi运行项目"></a>uwsgi运行项目</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uwsgi conf/uwsgi.ini</span><br></pre></td></tr></table></figure>
+<h1 id="uwsgi运行项目"><a href="#uwsgi运行项目" class="headerlink" title="uwsgi运行项目"></a>uwsgi运行项目</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uwsgi -i conf/uwsgi.ini</span><br></pre></td></tr></table></figure>
 
       
     </div>

@@ -16,7 +16,7 @@
   <entry>
     <title><![CDATA[使用Nginx+uwsgi进行Django部署]]></title>
     <url>%2F2017%2F12%2F20%2F%E4%BD%BF%E7%94%A8Nginx-uwsgi%E8%BF%9B%E8%A1%8CDjango%E9%83%A8%E7%BD%B2%2F</url>
-    <content type="text"><![CDATA[Python环境：3.6.xLinux系统：CentOS 7 安装nginx和需要的包12sudo yum install epel-releasesudo yum install python-devel nginx 安装uwsgi在项目虚拟环境或者全局使用pip安装： 12# 安装正式环境部署工具pip install uwsgi 配置文件在项目根目录创建conf文件夹，分别创建uc_nginx.conf和uwsgi.ini文件： uc_nginx.conf 1234567891011121314151617181920212223242526272829303132# the upstream component nginx needs to connect toupstream django &#123; # server unix:///path/to/your/mysite/mysite.sock; # for a file socket server 127.0.0.1:8000; # for a web port socket (we&apos;ll use this first)&#125;# configuration of the serverserver &#123; # the port your site will be served on listen 80; # the domain name it will serve for server_name 106.14.158.68; # substitute your machine&apos;s IP address or FQDN charset utf-8; # max upload size client_max_body_size 75M; # adjust to taste # Django media location /media &#123; alias /opt/softwares/dt_project/media; # 指向django的media目录 &#125; location /static &#123; alias /opt/softwares/dt_project/static; # 指向django的static目录 &#125; # Finally, send all non-media requests to the Django server. location / &#123; uwsgi_pass django; include uwsgi_params; # the uwsgi_params file you installed &#125;&#125; uwsgi.ini 12345678910111213141516171819202122[uwsgi]# Django-related settings# the base directory (full path)chdir = /opt/softwares/dt_project# Django's wsgi filemodule = drug_traceability.wsgi# the virtualenv (full path)virtualenv = /opt/softwares/envs/drug_traceability/# process-related settings# mastermaster = true# maximum number of worker processesprocesses = 5# the socket (use the full path to be safesocket = :8000buffer-size = 65535# ... with appropriate permissions - may be needed# chmod-socket = 664# clear environment on exitvacuum = true 加载自定义nginx配置文件复制自定义的nginx配置文件到该目录： 1cp project_dir/conf/uc_nginx.conf /etc/nginx/conf.d/ 然后重启nginx服务 uwsgi运行项目1uwsgi conf/uwsgi.ini]]></content>
+    <content type="text"><![CDATA[Python环境：3.6.xLinux系统：CentOS 7 安装nginx和需要的包12sudo yum install epel-releasesudo yum install python-devel nginx 安装uwsgi在项目虚拟环境或者全局使用pip安装： 12# 安装正式环境部署工具pip install uwsgi 配置文件在项目根目录创建conf文件夹，分别创建uc_nginx.conf和uwsgi.ini文件： uc_nginx.conf 1234567891011121314151617181920212223242526272829303132# the upstream component nginx needs to connect toupstream django &#123; # server unix:///path/to/your/mysite/mysite.sock; # for a file socket server 127.0.0.1:8000; # for a web port socket (we&apos;ll use this first)&#125;# configuration of the serverserver &#123; # the port your site will be served on listen 80; # the domain name it will serve for server_name 106.14.158.68; # substitute your machine&apos;s IP address or FQDN charset utf-8; # max upload size client_max_body_size 75M; # adjust to taste # Django media location /media &#123; alias /opt/softwares/dt_project/media; # 指向django的media目录 &#125; location /static &#123; alias /opt/softwares/dt_project/static; # 指向django的static目录 &#125; # Finally, send all non-media requests to the Django server. location / &#123; uwsgi_pass django; include uwsgi_params; # the uwsgi_params file you installed &#125;&#125; uwsgi.ini 12345678910111213141516171819202122[uwsgi]# Django-related settings# the base directory (full path)chdir = /opt/softwares/dt_project# Django's wsgi filemodule = drug_traceability.wsgi# the virtualenv (full path)virtualenv = /opt/softwares/envs/drug_traceability/# process-related settings# mastermaster = true# maximum number of worker processesprocesses = 5# the socket (use the full path to be safesocket = :8000buffer-size = 65535# ... with appropriate permissions - may be needed# chmod-socket = 664# clear environment on exitvacuum = true 加载自定义nginx配置文件复制自定义的nginx配置文件到该目录： 1cp project_dir/conf/uc_nginx.conf /etc/nginx/conf.d/ 然后重启nginx服务 uwsgi运行项目1uwsgi -i conf/uwsgi.ini]]></content>
       <categories>
         <category>Python</category>
       </categories>
@@ -85,8 +85,8 @@
         <category>Softwares</category>
       </categories>
       <tags>
-        <tag>Develop Tools</tag>
         <tag>Markdown</tag>
+        <tag>Develop Tools</tag>
       </tags>
   </entry>
   <entry>
@@ -97,8 +97,8 @@
         <category>Softwares</category>
       </categories>
       <tags>
-        <tag>Git</tag>
         <tag>Develop Tools</tag>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
