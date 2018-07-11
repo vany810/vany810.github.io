@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[关于Django查询优化]]></title>
+    <url>%2F2018%2F07%2F11%2F%E5%85%B3%E4%BA%8EDjango%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96%2F</url>
+    <content type="text"><![CDATA[最近三个月用Django做了一个算是比较复杂的电商项目，我一个人负责了所有接口的编写，包括APP端，WEB端，APP管理端，感觉写完这个项目以后再也不想遇到电商项目了 - -！ 不多说废话了，最近发现Django官方2.0竟然开始搞中文文档了，这算是开始重视国内市场了吗… 简单来说，我们根据文档刚开始上手Django开发的时候，肯定会照着文档写几乎所有这样的查询： 123456queryset = Model.objects.all()queryset = Model.objects.filter( param1=a, param2=b) 我们肯定会这样写的，我开始也是这样子，这里我说一下子，我最开始不是做后台开发的，所以我对SQL语句和数据库方面可能不是很懂。 那么问题来了，如果最后测试接口的时候，你会发现当你写一个list的GET接口，如果你还需要去查询对象关联表的数据同时进行返回，当你查询几十条返回你就会发现你的返回响应时间就得一两秒了。 正常情况下，我们都会尽量可能保证接口响应速度为毫秒级，而且尽量1s内会有返回，这样才能保证前端用户的体验。 那么问题究竟出在哪里？有经验的朋友肯定会想到了，这种list查询解析成json返回，不可避免就会遍历你查询的对象，比如你查询20个user对象queryset，然后还要返回user关联的address对象，那么你每次user.address首次调用的时候其实都会做一次查询，这样20个user就会产生20次查询，当然实际情况你可能查的关联对象远不止一个address，所以你一个list接口有可能会产生几百次查询，就为了获取你这些关联数据。 出现问题了，当然要找解决方法啦。我们详细看官方文档Model篇里面的queryset内容，可以找到有两个方法：select_related()和prefetch_related()两个方法。 有些朋友可能刚开始不是太能理解两者的区别，我这里简单说明一下： select_related()只能用于OneToOne和ForeignKey的情况，不能用于多对多和关联关系的字段 prefetch_related()用于多对多或者关联关系 我举个简单的例子： 12345678# 作者class Author(models.Model): name = models.CharField(...)# 书籍class Book(models.Model): author = models.ForeignKey(Author, ...) name = models.CharField(...) 很简单的两个类，假如我查询的是Book，那么我们应该这么写： 1queryset = Book.object.all().select_related('author') 因为author是Book类里面ForeignKey，如果我们要查询Author： 1queryset = Author.objects.all().prefetch_related('books') 这里因为books是Author这个对象的一个关联关系，我们用author.books是获取不到数据的，它还只是一个manager，我们必须author.books.all()继续查询才能获取到数据。 如果有遇到更加复杂查询的朋友，可以继续深入了解Prefetch和SubQuery，可以帮你们通过更为复杂的条件获取到你想要的数据，我这里就暂时不举例说明了。]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Django</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[MacOS系统装机环境配置命令大全]]></title>
     <url>%2F2017%2F12%2F20%2FMacOS%E7%B3%BB%E7%BB%9F%E8%A3%85%E6%9C%BA%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8%2F</url>
     <content type="text"><![CDATA[系统设置macOS10.12+允许任何来源应用1sudo spctl --master-disable Finder显示隐藏文件1defaults write com.apple.finder AppleShowAllFiles -bool true Homebrew安装与配置安装Homebrew1/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" 替换国内镜像源 更换Homebrew的formula索引镜像（即brew update时所更新的内容） 123456789# 替换现有上游cd "$(brew --repo)"git remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.gitcd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"git remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.gitbrew update 123456789#使用homebrew-science或者homebrew-pythoncd "$(brew --repo)/Library/Taps/homebrew/homebrew-science"git remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-science.gitcd "$(brew --repo)/Library/Taps/homebrew/homebrew-python"git remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-python.gitbrew update 更换Homebrew二进制预编译包的镜像 12echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles' &gt;&gt; ~/.bash_profilesource ~/.bash_profile Homebrew安装Java开发环境123456789101112131415# 查询javabrew cask search java# 查看版本信息brew cask info java# 安装最新版本javabrew cask install java# 需要安装其他版本brew tap caskroom/versionsbrew cask install java8# 查看当前安装的java版本java -version Ruby Gems镜像替换12345# 添加 TUNA 源并移除默认源gem sources --add https://mirrors.tuna.tsinghua.edu.cn/rubygems/ --remove https://rubygems.org/# 列出已有源gem sources -l# 应该只有 TUNA 一个 CocoaPods镜像替换123cd ~/.cocoapods/repos pod repo remove mastergit clone https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git master 最后进入自己的工程，在自己工程的Podfile第一行加上： 1source &apos;https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git&apos; pypi镜像替换修改 ~/.config/pip/pip.conf (Linux), %APPDATA%\pip\pip.ini (Windows 10) 或 $HOME/Library/Application Support/pip/pip.conf (macOS) (没有就创建一个)， 修改 index-url至tuna，例如 12[global]index-url = https://pypi.tuna.tsinghua.edu.cn/simple pip 和 pip3 并存时，只需修改 ~/.pip/pip.conf。]]></content>
@@ -85,8 +96,8 @@
         <category>Softwares</category>
       </categories>
       <tags>
-        <tag>Markdown</tag>
         <tag>Develop Tools</tag>
+        <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -97,8 +108,8 @@
         <category>Softwares</category>
       </categories>
       <tags>
-        <tag>Develop Tools</tag>
         <tag>Git</tag>
+        <tag>Develop Tools</tag>
       </tags>
   </entry>
   <entry>

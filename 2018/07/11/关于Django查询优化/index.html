@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hue,PyCharm," />
+  <meta name="keywords" content="Django," />
 
 
 
@@ -79,25 +79,18 @@
 
 
 
-<meta name="description" content="首先先吐槽一下，Hue这玩意如果你没做好心理准备，还是先不要入坑，本人是没有办法，公司要基于Hue进行二次开发，所以刚入手的时候每天各种填坑… 言归正传，Hue主要是基于Django框架写的，然而用到的Django版本老的让人觉得匪夷所思，这边我用到的是Hue3.11版本，最新的是3.12版本。">
-<meta name="keywords" content="Hue,PyCharm">
+<meta name="description" content="最近三个月用Django做了一个算是比较复杂的电商项目，我一个人负责了所有接口的编写，包括APP端，WEB端，APP管理端，感觉写完这个项目以后再也不想遇到电商项目了 - -！ 不多说废话了，最近发现Django官方2.0竟然开始搞中文文档了，这算是开始重视国内市场了吗… 简单来说，我们根据文档刚开始上手Django开发的时候，肯定会照着文档写几乎所有这样的查询： 123456queryset =">
+<meta name="keywords" content="Django">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PyCharm调试Hue教程">
-<meta property="og:url" content="http://swifter.love/2017/06/01/PyCharm调试Hue教程/index.html">
+<meta property="og:title" content="关于Django查询优化">
+<meta property="og:url" content="http://swifter.love/2018/07/11/关于Django查询优化/index.html">
 <meta property="og:site_name" content="技术宅之家">
-<meta property="og:description" content="首先先吐槽一下，Hue这玩意如果你没做好心理准备，还是先不要入坑，本人是没有办法，公司要基于Hue进行二次开发，所以刚入手的时候每天各种填坑… 言归正传，Hue主要是基于Django框架写的，然而用到的Django版本老的让人觉得匪夷所思，这边我用到的是Hue3.11版本，最新的是3.12版本。">
+<meta property="og:description" content="最近三个月用Django做了一个算是比较复杂的电商项目，我一个人负责了所有接口的编写，包括APP端，WEB端，APP管理端，感觉写完这个项目以后再也不想遇到电商项目了 - -！ 不多说废话了，最近发现Django官方2.0竟然开始搞中文文档了，这算是开始重视国内市场了吗… 简单来说，我们根据文档刚开始上手Django开发的时候，肯定会照着文档写几乎所有这样的查询： 123456queryset =">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://omwcxiv62.bkt.clouddn.com/WX20170601-134402@2x.png">
-<meta property="og:image" content="http://omwcxiv62.bkt.clouddn.com/WX20170601-134457@2x.png">
-<meta property="og:image" content="http://omwcxiv62.bkt.clouddn.com/WX20170601-134540@2x.png">
-<meta property="og:image" content="http://omwcxiv62.bkt.clouddn.com/WX20170601-134631@2x.png">
-<meta property="og:image" content="http://omwcxiv62.bkt.clouddn.com/WX20170601-134720@2x.png">
-<meta property="og:image" content="http://omwcxiv62.bkt.clouddn.com/WX20170601-134818@2x.png">
-<meta property="og:updated_time" content="2017-12-20T08:51:04.921Z">
+<meta property="og:updated_time" content="2018-07-11T09:14:07.725Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PyCharm调试Hue教程">
-<meta name="twitter:description" content="首先先吐槽一下，Hue这玩意如果你没做好心理准备，还是先不要入坑，本人是没有办法，公司要基于Hue进行二次开发，所以刚入手的时候每天各种填坑… 言归正传，Hue主要是基于Django框架写的，然而用到的Django版本老的让人觉得匪夷所思，这边我用到的是Hue3.11版本，最新的是3.12版本。">
-<meta name="twitter:image" content="http://omwcxiv62.bkt.clouddn.com/WX20170601-134402@2x.png">
+<meta name="twitter:title" content="关于Django查询优化">
+<meta name="twitter:description" content="最近三个月用Django做了一个算是比较复杂的电商项目，我一个人负责了所有接口的编写，包括APP端，WEB端，APP管理端，感觉写完这个项目以后再也不想遇到电商项目了 - -！ 不多说废话了，最近发现Django官方2.0竟然开始搞中文文档了，这算是开始重视国内市场了吗… 简单来说，我们根据文档刚开始上手Django开发的时候，肯定会照着文档写几乎所有这样的查询： 123456queryset =">
 
 
 
@@ -127,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://swifter.love/2017/06/01/PyCharm调试Hue教程/"/>
+  <link rel="canonical" href="http://swifter.love/2018/07/11/关于Django查询优化/"/>
 
 
 
 
 
-  <title>PyCharm调试Hue教程 | 技术宅之家</title>
+  <title>关于Django查询优化 | 技术宅之家</title>
   
 
 
@@ -304,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://swifter.love/2017/06/01/PyCharm调试Hue教程/">
+    <link itemprop="mainEntityOfPage" href="http://swifter.love/2018/07/11/关于Django查询优化/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="陶英军">
@@ -321,7 +314,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">PyCharm调试Hue教程</h1>
+          <h1 class="post-title" itemprop="name headline">关于Django查询优化</h1>
         
 
         <div class="post-meta">
@@ -333,8 +326,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-01T23:27:23+08:00">
-                2017-06-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-11T16:37:46+08:00">
+                2018-07-11
               </time>
             
 
@@ -356,8 +349,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/大数据/" itemprop="url" rel="index">
-                    <span itemprop="name">大数据</span>
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
                   </a>
                 </span>
 
@@ -393,22 +386,30 @@
       
 
       
-        <p>首先先吐槽一下，Hue这玩意如果你没做好心理准备，还是先不要入坑，本人是没有办法，公司要基于Hue进行二次开发，所以刚入手的时候每天各种填坑…</p>
-<p>言归正传，Hue主要是基于Django框架写的，然而用到的Django版本老的让人觉得匪夷所思，这边我用到的是Hue3.11版本，最新的是3.12版本。</p>
-<a id="more"></a>
-<p>那么本地搭建好Hue项目后要进行Debug，需要进行以下步骤：</p>
-<h5 id="1-配置PyCharm虚拟环境目录"><a href="#1-配置PyCharm虚拟环境目录" class="headerlink" title="1.配置PyCharm虚拟环境目录"></a>1.配置PyCharm虚拟环境目录</h5><p>进入PyCharm设置界面，进入如下图所示配置界面添加本地虚拟环境目录，加载出该环境依赖库则表示操作成功。</p>
-<p><img src="http://omwcxiv62.bkt.clouddn.com/WX20170601-134402@2x.png" alt="WX20170601-134402@2x"></p>
-<h5 id="2-添加Django支持"><a href="#2-添加Django支持" class="headerlink" title="2.添加Django支持"></a>2.添加Django支持</h5><p>根据下图进入Django配置界面，然后配置右侧信息，对应自己项目目录下的文件目录。</p>
-<p><img src="http://omwcxiv62.bkt.clouddn.com/WX20170601-134457@2x.png" alt="WX20170601-134457@2x"></p>
-<h5 id="3-添加Debug配置"><a href="#3-添加Debug配置" class="headerlink" title="3.添加Debug配置"></a>3.添加Debug配置</h5><p>首先，打开Debug配置界面。</p>
-<p><img src="http://omwcxiv62.bkt.clouddn.com/WX20170601-134540@2x.png" alt="WX20170601-134540@2x"></p>
-<p>点击左上角+号添加Django server的配置，添加一个自定义设置名称，完成后点OK按钮。</p>
-<p><img src="http://omwcxiv62.bkt.clouddn.com/WX20170601-134631@2x.png" alt="WX20170601-134631@2x"></p>
-<p>如下图选中Debug目标，然后就可以进行Debug了。</p>
-<p><img src="http://omwcxiv62.bkt.clouddn.com/WX20170601-134720@2x.png" alt="WX20170601-134720@2x"></p>
-<p>当出现下图的打印日志信息中的<code>Starting Development ... http://127.0.0.1:8000/</code>，则表示Debug项目运行成功，这时候你就可以用自己的浏览器打开对应网址进行调试了。</p>
-<p><img src="http://omwcxiv62.bkt.clouddn.com/WX20170601-134818@2x.png" alt="WX20170601-134818@2x"></p>
+        <p>最近三个月用Django做了一个算是比较复杂的电商项目，我一个人负责了所有接口的编写，包括APP端，WEB端，APP管理端，感觉写完这个项目以后再也不想遇到电商项目了 - -！</p>
+<p>不多说废话了，最近发现Django官方2.0竟然开始搞中文文档了，这算是开始重视国内市场了吗…</p>
+<p>简单来说，我们根据文档刚开始上手Django开发的时候，肯定会照着文档写几乎所有这样的查询：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">queryset = Model.objects.all()</span><br><span class="line"></span><br><span class="line">queryset = Model.objects.filter(</span><br><span class="line">    param1=a,</span><br><span class="line">    param2=b</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>我们肯定会这样写的，我开始也是这样子，这里我说一下子，我最开始不是做后台开发的，所以我对SQL语句和数据库方面可能不是很懂。</p>
+<p>那么问题来了，如果最后测试接口的时候，你会发现当你写一个list的GET接口，如果你还需要去查询对象关联表的数据同时进行返回，当你查询几十条返回你就会发现你的返回响应时间就得一两秒了。</p>
+<p>正常情况下，我们都会尽量可能保证接口响应速度为毫秒级，而且尽量1s内会有返回，这样才能保证前端用户的体验。</p>
+<p>那么问题究竟出在哪里？有经验的朋友肯定会想到了，这种list查询解析成json返回，不可避免就会遍历你查询的对象，比如你查询20个user对象queryset，然后还要返回user关联的address对象，那么你每次<code>user.address</code>首次调用的时候其实都会做一次查询，这样20个user就会产生20次查询，当然实际情况你可能查的关联对象远不止一个address，所以你一个list接口有可能会产生几百次查询，就为了获取你这些关联数据。</p>
+<p>出现问题了，当然要找解决方法啦。我们详细看官方文档Model篇里面的queryset内容，可以找到有两个方法：<code>select_related()</code>和<code>prefetch_related()</code>两个方法。</p>
+<p>有些朋友可能刚开始不是太能理解两者的区别，我这里简单说明一下：</p>
+<ul>
+<li><p><code>select_related()</code>只能用于OneToOne和ForeignKey的情况，不能用于多对多和关联关系的字段</p>
+</li>
+<li><p><code>prefetch_related()</code>用于多对多或者关联关系</p>
+</li>
+</ul>
+<p>我举个简单的例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 作者</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Author</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    name = models.CharField(...)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 书籍</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    author = models.ForeignKey(Author, ...)</span><br><span class="line">    name = models.CharField(...)</span><br></pre></td></tr></table></figure>
+<p>很简单的两个类，假如我查询的是Book，那么我们应该这么写：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">queryset = Book.object.all().select_related(<span class="string">'author'</span>)</span><br></pre></td></tr></table></figure>
+<p>因为<code>author</code>是Book类里面ForeignKey，如果我们要查询Author：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">queryset = Author.objects.all().prefetch_related(<span class="string">'books'</span>)</span><br></pre></td></tr></table></figure>
+<p>这里因为<code>books</code>是Author这个对象的一个关联关系，我们用<code>author.books</code>是获取不到数据的，它还只是一个manager，我们必须<code>author.books.all()</code>继续查询才能获取到数据。</p>
+<p>如果有遇到更加复杂查询的朋友，可以继续深入了解Prefetch和SubQuery，可以帮你们通过更为复杂的条件获取到你想要的数据，我这里就暂时不举例说明了。</p>
 
       
     </div>
@@ -426,9 +427,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Hue/" rel="tag"># Hue</a>
-          
-            <a href="/tags/PyCharm/" rel="tag"># PyCharm</a>
+            <a href="/tags/Django/" rel="tag"># Django</a>
           
         </div>
       
@@ -441,8 +440,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/25/Django快速实现登录功能/" rel="next" title="Django快速实现登录功能">
-                <i class="fa fa-chevron-left"></i> Django快速实现登录功能
+              <a href="/2017/12/20/MacOS系统装机环境配置命令大全/" rel="next" title="MacOS系统装机环境配置命令大全">
+                <i class="fa fa-chevron-left"></i> MacOS系统装机环境配置命令大全
               </a>
             
           </div>
@@ -450,10 +449,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/06/05/引用类型和值类型/" rel="prev" title="引用类型和值类型">
-                引用类型和值类型 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -505,17 +500,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -609,22 +595,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-配置PyCharm虚拟环境目录"><span class="nav-number">1.</span> <span class="nav-text"><a href="#1-&#x914D;&#x7F6E;PyCharm&#x865A;&#x62DF;&#x73AF;&#x5883;&#x76EE;&#x5F55;" class="headerlink" title="1.&#x914D;&#x7F6E;PyCharm&#x865A;&#x62DF;&#x73AF;&#x5883;&#x76EE;&#x5F55;"></a>1.&#x914D;&#x7F6E;PyCharm&#x865A;&#x62DF;&#x73AF;&#x5883;&#x76EE;&#x5F55;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-添加Django支持"><span class="nav-number">2.</span> <span class="nav-text"><a href="#2-&#x6DFB;&#x52A0;Django&#x652F;&#x6301;" class="headerlink" title="2.&#x6DFB;&#x52A0;Django&#x652F;&#x6301;"></a>2.&#x6DFB;&#x52A0;Django&#x652F;&#x6301;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-添加Debug配置"><span class="nav-number">3.</span> <span class="nav-text"><a href="#3-&#x6DFB;&#x52A0;Debug&#x914D;&#x7F6E;" class="headerlink" title="3.&#x6DFB;&#x52A0;Debug&#x914D;&#x7F6E;"></a>3.&#x6DFB;&#x52A0;Debug&#x914D;&#x7F6E;</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
